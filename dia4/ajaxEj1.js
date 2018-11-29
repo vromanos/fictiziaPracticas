@@ -1,17 +1,24 @@
-function request(url) {
+function request(url, fnCallback) {
 
 	fetch(url)
 	    .then(function(response) {
-	    	console.log("1st then => " + response);
 	    	return response.json();
 	    })
 	    .then(function(data) {
-	    	console.log("2nd then => " + data);
-	      	console.log(data)  
+	      	fnCallback(data); 
 	    })
 	    .catch(function(error) {
 	      	console.log("Error en Fetch => " + error)
 	    });  
 };
 
-request("http://airemad.com/api/v1/station");
+request("http://airemad.com/api/v1/station", data => {
+	console.log(data);
+	var div = document.querySelector("#resultado");
+	var cadenaHtml = "<ul>";
+	data.forEach(ele => {
+		cadenaHtml += "<li>Estacion " + ele.nombre_estacion + " - " + ele.direccion + "</li>";
+	})
+	cadenaHtml += "</ul>"
+	div.innerHTML = cadenaHtml;
+});
