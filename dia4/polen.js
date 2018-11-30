@@ -16,7 +16,7 @@ function request(url, fnCallback) {
 
 var madrid = "Madrid";
 var cadenaHtml = "";
-request("http://api.openweathermap.org/data/2.5/weather?q="+madrid+"&APPID=575d6a8a0eda57506aefa0a327af4b19", data => {
+request("http://api.openweathermap.org/data/2.5/weather?q="+madrid+"&APPID=", data => {
 	console.log(data);
 	var div = document.querySelector("#resultado");
 	cadenaHtml += "Estacion " + data.name + "<ul>";
