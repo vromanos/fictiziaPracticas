@@ -1,12 +1,11 @@
-
 function actualizarListaContactos() {
 	var listaContactos = "";
 	const localStorage = window.localStorage;
 	var contadorActual = 1;
 	for ( var i = 0; i < localStorage.length; i++ ) {
 		if (localStorage.key(i).startsWith("contacto")) {
-			var contacto = localStorage.getItem(localStorage.key(i)).split("##");
-			listaContactos += `<li><div>Nombre = ${contacto[0]} Telefono = ${contacto[1]} Email = ${contacto[2]}</div><input type="button" onClick="eliminarContacto('${localStorage.key(i)}')" value="Eliminar"></li>`;
+			var contacto = JSON.parse(localStorage.getItem(localStorage.key(i)));
+			listaContactos += `<li><div>Nombre = ${contacto.nombre} Telefono = ${contacto.telefono} Email = ${contacto.email}</div><input type="button" onClick="eliminarContacto('${localStorage.key(i)}')" value="Eliminar"></li>`;
 		}
 		contadorActual++;
 	}
@@ -26,7 +25,7 @@ var Contacto = function (nombre, telefono, email) {
 	this.email = email;
 	this.id = contadorContactos++;
 	this.guardarContacto = function () {
-		window.localStorage.setItem("contacto"+this.id, this.nombre+"##"+this.telefono+"##"+this.email);
+		window.localStorage.setItem("contacto"+this.id, JSON.stringify(this));
 	}
 };
 
@@ -51,7 +50,7 @@ var Contacto = function (nombre, telefono, email) {
 	});
 
 	document.querySelector("#borrarContactos").addEventListener('click', e => {
-		if (confirm("¿Seguro que desea borrar todos los contactos?")) {
+		if (confirm("Seguro que desea borrar todos los contactos?")) {
 			for ( var i = 0; i < localStorage.length; i++ ) {
 				if (localStorage.key(i).startsWith("contacto")) {
 					localStorage.removeItem(localStorage.key(i));
