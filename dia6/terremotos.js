@@ -35,7 +35,7 @@ if (process.argv.length > 2) {
                 console.log(`==============================`);
                 console.log('');
 		  		data.features.forEach(terremoto => {
-					console.log(`Terremoto en ${terremoto.properties.place} de magnitud: ${terremoto.properties.mag}`);
+					console.log(`Terremoto en ${terremoto.properties.place} (coordenadas: ${terremoto.geometry.coordinates[0]} , ${terremoto.geometry.coordinates[1]}) de magnitud: ${terremoto.properties.mag}`);
 		  		});	
         	} else {
         		console.log(`No se ha detectado ningun terremoto del tipo ${tipoTerremoto} en el ultimo dia`);
