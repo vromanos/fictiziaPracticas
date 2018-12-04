@@ -26,15 +26,16 @@ if (process.argv.length > 2) {
         	if (data.features.length > 0) {
         		console.log('');
         		console.log(`Se han detectado ${data.features.length} terremotos del tipo ${tipoTerremoto} en el ultimo dia:`);
-        		console.log(`*****************************
-                    ${data.metadata.title}
-                    ---------------------
-                    status: ${data.metadata.status}
-                    ---------------------
-                    ${new Date(data.metadata.generated).toLocaleString("es-ES")}
-                    ==============================`);
+        		console.log(`*****************************`);
+                console.log(`${data.metadata.title}`);
+                console.log(`---------------------`);
+                console.log(`status: ${data.metadata.status}`);
+                console.log(`---------------------`);
+                console.log(`${new Date(data.metadata.generated).toLocaleString("es-ES")}`);
+                console.log(`==============================`);
+                console.log('');
 		  		data.features.forEach(terremoto => {
-					console.log(`Terremoto en ${terremoto.properties.place}`);
+					console.log(`Terremoto en ${terremoto.properties.place} de magnitud: ${terremoto.properties.mag}`);
 		  		});	
         	} else {
         		console.log(`No se ha detectado ningun terremoto del tipo ${tipoTerremoto} en el ultimo dia`);
