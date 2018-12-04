@@ -1,0 +1,103 @@
+
+Call => permite llamar a una función de manera implícita, permitiendo cambiarle el contexto pero manteniendo el orden y número de argumentos
+Apply => es lo mismo que call, pero sólo admite un array con los argumentos de la función. De esta manera podemos pasar un número indefinido de parámetros
+Bind => permite modificar la llamada de una función, fijando algunos de los parámetros de la función
+
+##########
+
+A partir de un array, podemos utilizar la propiedad “map” para iterar en todos los métodos de un Array
+
+var numeros = [1, 2, 3, 4, 5];
+for (var i = 0; i < numeros.length; i++) {
+  numeros[i] *= 10;
+}
+console.log(numeros);
+
+Es equivalente a 
+
+var numeros = [1, 2, 3, 4, 5].map(function (item) {
+	return item*10;
+});
+console.log(numeros);
+
+
+La diferencia entre foreach de un Array contra un bucle for, es que el foreach va a iterar sobre todos los elementos de un array; se le pasa la función que se va a ejecutar, que recibirá el elemento de la iteración, el indice que tiene dentro del array el elemento y el array completo
+
+Some y every son dos funciones de un Array, que permite determinar si alguno de los elementos (o todos -every- ) cumplen una condición determinada por la función pasada como parámetro
+
+############
+
+Si vamos a trabajar con this, si no queremos tener comportamientos inesperados, lo suyo es asignar una variable local a this, y así siempre será lo mismo
+var _self = this;
+
+############
+
+Clousures => son funciones anónimas que tienen acceso a su scope, y al scope en donde están definidas
+	Se utilizan principalmente para tener tareas prehechas sobre determinados datos. Las tareas pesadas se definen en la parte de la declaración inicial, y las tareas sencillas reutilizables en el clousure
+	No es algo que se suela usar mucho, pero se usa fundamentalmente en la definición de librerías
+
+var Magic = (function(){
+	console.log("Soy 1")
+	let coeficienteSeguro = 10;
+	return function(num){
+		console.log("Soy 2, coeficienteSeguro:", coeficienteSeguro)
+		
+		if(coeficienteSeguro > 20){
+			return num*coeficienteSeguro
+		} else {
+			coeficienteSeguro++
+			Magic(num)
+		}
+			
+	}
+})()
+
+#######
+
+Arrow functions
+
+fuction() {}
+
+[].map(function(item) { return item; });
+[].map(item => item);
+
+[].map(function (item, index) {
+	return {
+		item: item,
+		index: index
+	}
+});
+[].map((item, index) => ({item, index}))
+
+No se deberían usar para todo, y hay que tener cuidado con el this en las Arrow functions
+
+#########
+
+Yield, permite que una función tenga múltiples retornos…se puede usar en funciones generadoras
+
+#########
+
+La gestión de eventos consume bastante tiempo de procesamiento y memoria.
+Es recomendable tener un gestor de evento “click” y en cada elemento “clickable” se le puede meter un párametro data-target, donde indicamos qué es lo que se está pinchando y tratar el evento de una manera o de otra en función del Target.
+
+#########
+
+Cuando estemos modificando el DOM, es mejor hacer un cambio grande que varios cambios pequeños, ya que cada vez que modificamos el DOM se recalcula la estructura de capas
+
+#########
+
+evento.isTrusted => verifica en un handler si el evento que está generándose, lo ha producido el usuario de manera mecánica (no programáticamente)
+
+#########
+
+applicationCache => nos permite guardar contenido en la caché del navegador que permitiría al usuario seguir viendo contenido aunque esté offline
+
+Webworkers => te permite hacer procesos muy pesados en cuanto a procesamiento y nos permita seguir navegando por la web normalmente
+
+#########
+
+console.time(“variable”);
+// procesamiento 
+console.timeEnd(“variable”);
+
+Nos indica cuanto tiempo transcurre en el procesamiento de un código

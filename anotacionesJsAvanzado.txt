@@ -1,0 +1,81 @@
+grunt y gulp => gestion de tareas; automatización de tareas, como minificicación, compilación, copia de documentos… Se recomienda usar Gulp 3 con run-sequence (no gulp 4, algunos plugins no están migrados a a nueva versión)
+
+Express => librería para facilitar crear un servidor con node.js
+
+Helmet => librería para aportar cierta seguridad a un servidor levantado con express
+
+Mongoose => driver para trabajar con Mongo
+
+Chalk => capa para dar estilos a la vista
+
+J5 => Arduino y node
+
+GraphicsMagick => librería para realizar tareas gráficas sobre elementos de la app; redimensionar, establecer cabeceras, logos…
+
+Nodemailer => gestión de emails desde node (phpmailer)
+
+Passport.js => pasaporte para hacer login en diferentes redes sociales, aplicaciones…
+
+Cheerio y X-Ray => scraping a través de node
+
+Puppeteer => es una librería node que te ayuda a hacer test de integración tu aplicación (reemplazo a selenium); habla con un chromium sin intermediarios; permite automatizar determinadas tareas como un login para facilitar los test
+
+Pm2 => librería que nos permite al subir node a producción que no se caiga nunca. Si hubiera algún fallo en el monohilo de node, levanta el node de nuevo. Además permite trabajar en cluster
+
+Electron => permite crear aplicaciones de escritorio hechas en javascript, html y css; por debajo lleva chromium y node
+
+Yeoman => permite generar estructuras de proyectos
+
+Babel => intérprete de javascript que te permite ser retro compatible con versiones anteriores de javascript (80% de la gente lo usa)
+
+Faker.js => permite generar datos de manera aleatoria
+
+Json-generator => incluye faker.js, y te permite definir datos parametrizados entre diferentes niveles de configuración
+
+Webpack => bundle de javascript; permite “zipear” tu código en un sólo elemento (varios javascript => one js)
+
+ESLint => linter para javascript, introduciendo reglas para tener un código de calidad
+
+Mocha y jasmine => test unitarios para javascript
+
+jsHint => mejora calidad del código mediante métricas
+
+Code climate => estado de tu calidad del código
+
+
+mathJs => librería para trabajar con conceptos matemáticos complejos
+
+Momments.js => librería que facilita para trabajar con fechas
+
+################################
+
+Naming css => te permite identificar qué clases css de los elementos de una web, son utilizados para qué cosas (js-tweet-txt => identifica que esta clase se utiliza para javascript). Introduce un nuevo nivel semántico a la hora de identificar las clases css en nuestro código (BEM, tecnología que nos facilita esta práctica)
+
+Lint css => los linters te identifican problemas en tu código css
+
+Autoprefixer => permite meter muchos prefijos a tus clases css, para adaptar tu código a versiones anteriores y cross browser
+
+################################
+
+shodan =>  te realiza búsquedas, pero en vez de buscar por contenidos, te busca por máquinas, intentando localizar vulnerabilidades
+
+haveibeenpwned => si tu cuenta de correo ha sido comprometida en algún momento
+
+Artículo trello password 
+Videos del desarrollador de node => introduction to node.js; 10 things to regret about node
+
+
+Codewars => un site para hacer prácticas en javascript
+
+Idiomatics guía de estilos => una buena guía de estilos para que la codificación sea lo más clara posible
+Airbnb guía de estilos => lo mismo
+
+
+Cuando trabajemos con Node lo recomendable es meterlo en un contenedor como Docker
+
+Chrome web developers tools
+
+Sources -> filesystem => purees sustituir el comportamiento de una web, modificando siempre el código que se va a ejecutar
+Network => te permite ver la transferencia de archivos para renderizar; “disable cache” debería estar habitado siempre que queramos verificar el rendimiento
+Performance => te permite grabar un comportamiento en la web, para analizar con detalle que es lo que está pasando cuando se realizan determinadas acciones
+Audits => permite ejecutar una serie de test automáticos para realizar una auditoría de una determinada web, y indicarnos la calidad del site; te da sugerencias al respecto de cómo mejorar la web con enlaces donde te explica el por qué y cómo hacerlo
