@@ -7,12 +7,15 @@ const http = require('https');
 
 if (process.argv.length > 2) {
 	var tipoTerremoto = process.argv[2];
-	console.log(`Ha especificado el parametro => ${tipoTerremoto}`);
-	const options = {
-  		host: 'earthquake.usgs.gov',
-  		path: `/earthquakes/feed/v1.0/summary/${tipoTerremoto}_hour.geojson`
-	};
-	http.get(options, function(res) {
+	console.log(`Se van a buscar terremotos en el ultimo dia del tipo => ${tipoTerremoto}`);
+	// https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson
+	const url = `https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/${tipoTerremoto}_day.geojson`;
+	//const options = {
+  	//	host: 'earthquake.usgs.gov',
+  	//	path: `/earthquakes/feed/v1.0/summary/${tipoTerremoto}_hour.geojson`
+	//};
+	//http.get(options, function(res) {
+	http.get(url, function(res) {
 		var body = '';
 		res.on('data', function(chunk){
         	body += chunk;
@@ -20,10 +23,23 @@ if (process.argv.length > 2) {
 
     	res.on('end', function(){
         	var data = JSON.parse(body);
-        	console.log("Se han detectado los siguientes terremotoso del tipo " + tipoTerremoto + " en la última hora:");
-		  	data.features.forEach(terremoto => {
-				console.log(`Terremoto en ${terremoto.properties.place}`);
-		  	});
+        	if (data.features.length > 0) {
+        		console.log('');
+        		console.log(`Se han detectado ${data.features.length} terremotos del tipo ${tipoTerremoto} en el ultimo dia:`);
+        		console.log(`*****************************
+                    ${data.metadata.title}
+                    ---------------------
+                    status: ${data.metadata.status}
+                    ---------------------
+                    ${new Date(data.metadata.generated).toLocaleString("es-ES")}
+                    ==============================`);
+		  		data.features.forEach(terremoto => {
+					console.log(`Terremoto en ${terremoto.properties.place}`);
+		  		});	
+        	} else {
+        		console.log(`No se ha detectado ningun terremoto del tipo ${tipoTerremoto} en el ultimo dia`);
+        	}
+
     	});
 
 	 }).on('error', function(e) {
